@@ -12,6 +12,7 @@
 #search-city {
   padding: 20px;
   margin: 20px;
+  display: inline-block;
 }
 
 button {
@@ -22,4 +23,5 @@ button {
   background-color: blue;
   color: white;
   margin: 10px;
+  float: left;
 }
