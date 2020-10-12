@@ -31,12 +31,21 @@
 
     <main class="container" id="main">
         <div class="row">
-            <div class="col-sm-4" id="search">
+            <div class="col-sm-4">
               <input type="text" placeholder="enter city here" id="search-city"></input>
-                <button class="fas fa-search"></i></button>
-                <ul>temporary</ul>
+                <button class="fas fa-search" id="search"></i></button>
+                <div id="city-history"></div>
             </div>
-            <div class="col-sm-8"><h2>Current Conditions</h2>
+            <div class="col-sm-8" id="current-conditions">
+              <div class="city"></div>
+              <div class="wind"></div>
+              <div class="humidity"></div>
+              <div class="description"></div>
+              <div class="uv-index"></div>
+              <div class="temp"></div>
+              <div class="tempF"></div>
+            </hr>
+              <div id="five-day">
                 <h2>Five Day Forecast</h2>
                 <div class="col-sm-2 card text-white bg-primary mb-3" id="card">
                     <div class="card-body">
@@ -62,6 +71,7 @@
                     <div class="card-body">
                       <h7 class="card-title">Day 5</h7>
                     </div>
+                  </div>
                   </div>
             </div>
         </div>
