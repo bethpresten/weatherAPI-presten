@@ -7,7 +7,7 @@ $(document).ready(function () {
     var city = $("#search-city").val();
     var weatherImg = $("#weather-icon");
     // var icon = response.list[12].weather[0].icon;
-    var currentDate = new Date();
+    var currentDate = moment().format("HH");
     // var date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
     // var lat = $(response.list[0].main.city.coord.lat)
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
             // console.log(response.list[0].main.humidity);
             // console.log(response.list[0].wind.speed);
             JSON.stringify(response.city.name);
-            $(".city").html("<h3>" + (city) + "</h3>" + currentDate);
+            $(".city").text("<h3>" + (city) + (currentDate) + "</h3>");
             $(".wind").text("Wind Speed: " + response.list[0].wind.speed + "mph");
             $(".humidity").text("Humidity: " + response.list[0].main.humidity + "%");
 
@@ -51,8 +51,7 @@ $(document).ready(function () {
 
     function getCityHistory() {
         var cityHistoryDiv = $("#city-history");
-        var cityHistoryBtn = $("<button class='list-item></button>")
-        cityHistoryBtn.text(city);
+        var cityHistoryBtn = $("<button>").attr("id", "button", ch).text(city.name);
         cityHistoryDiv.prepend(cityHistoryBtn);
     }
 
