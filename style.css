@@ -43,3 +43,14 @@ input {
   display: block;
   margin: 10%;
 }
+
+.city {
+  font-size: 24px;
+  font-weight: bolder;
+  display: inline !important;
+}
+
+.current-day {
+  display: inline !important;
+  margin: 8%;
+}
