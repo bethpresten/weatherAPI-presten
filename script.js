@@ -12,6 +12,7 @@ $(document).ready(function () {
     // var lat = $(response.list[0].main.city.coord.lat)
 
 
+
     $("#search").on("click", function (event) {
         var city = $("#search-city").val();
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=e2ce71516635d8291df50c096e9d84fd"
@@ -33,7 +34,8 @@ $(document).ready(function () {
             // console.log(response.list[0].main.humidity);
             // console.log(response.list[0].wind.speed);
             JSON.stringify(response.city.name);
-            $(".city").text("<h3>" + (city) + (currentDate) + "</h3>");
+            $(".city").attr("style", "<h3>").text(city);
+            $(".current-day").text(moment().format("dddd, MMMM Do, YYYY"));
             $(".wind").text("Wind Speed: " + response.list[0].wind.speed + "mph");
             $(".humidity").text("Humidity: " + response.list[0].main.humidity + "%");
 
@@ -44,14 +46,14 @@ $(document).ready(function () {
         })
 
         // var currentCity = response;
-        $("current-conditions").text(city.name);
-        getCityHistory();
+
+        getCityHistory(city);
 
     })
 
-    function getCityHistory() {
+    function getCityHistory(city) {
         var cityHistoryDiv = $("#city-history");
-        var cityHistoryBtn = $("<button>").attr("id", "button", ch).text(city.name);
+        var cityHistoryBtn = $("<button>").text(city).addClass("city-button");
         cityHistoryDiv.prepend(cityHistoryBtn);
     }
 

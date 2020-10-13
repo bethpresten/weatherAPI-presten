@@ -35,3 +35,11 @@ input {
   margin: 5px;
   border-color: black;
 }
+
+.city-button {
+  background-color: lightslategray;
+  color: white;
+  border-color: dark;
+  display: block;
+  margin: 10%;
+}
