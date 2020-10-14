@@ -8,18 +8,12 @@ $(document).ready(function () {
     var weatherImg = $("#weather-icon");
 
     var currentDate = moment().format("HH");
-    // var date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-    // var lat = $(response.list[0].main.city.coord.lat)
 
-
-    // function getWeather(city) {
     $("#search").on("click", function (event) {
+
         var city = $("#search-city").val();
         var queryURL = "http://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=e2ce71516635d8291df50c096e9d84fd"
         var apiKey = "e2ce71516635d8291df50c096e9d84fd";
-
-
-
         // console.log(city);
         // console.log(response.city.coord.lat); NOT WORKING; RESPONSE NOT DEFINED?
 
@@ -27,7 +21,7 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET",
         }).then(function (response) {
-            console.log(response);
+            // console.log(response);
             // console.log(response.city);
             // console.log(response.list[0].weather[0].description);
             // console.log(response.list[0].main.temp);
@@ -47,8 +41,6 @@ $(document).ready(function () {
 
             // console.log(response.city.coord.lat, response.city.coord.lon);
 
-
-
             // $(".temp").text("Temperature (K) " + response.list[0].main.temp);
             $(".tempF").text("Temperature (F) " + tempF.toFixed(2) + " F");
 
@@ -58,39 +50,63 @@ $(document).ready(function () {
                 url: uvIndexURL,
                 method: "GET",
             }).then(function (responseUV) {
-                // var UVindex = responseUV[0].value;
                 var UVindex = responseUV.value;
-                console.log(response);
-                console.log(UVindex)
-                // $(".uv-index").text("UV Index: " + UVindex);
-                var uvIndexDiv = $(".uv-index").text("UVIndex " + UVindex);
+                // condition.remove();
+                var condition = $("<button>");
+                condition.text("UV Index: " + UVindex).attr("class", "btn-warning");
+                $(".uv-index").prepend(condition);
+                if (UVindex < 3) {
+                    condition.attr("class", "btn-success");
+                } else if (UVindex > 7) {
+                    condition.attr("class", "btn-danger");
+                }
 
             })
+
+            // function fiveDayForecast(city) {
+
+            var queryFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
+            // console.log(queryFiveDay)
+            // var apiKey = "e2ce71516635d8291df50c096e9d84fd";
+            $.ajax({
+                url: queryFiveDay,
+                method: "GET",
+            }).then(function (responseFiveDay) {
+                console.log(responseFiveDay);
+
+                // var fiveEl = $("#five-day").add("<h2>").text("Five Day Forecast: ");
+                $("#card1").text(moment().add(1, 'days'), responseFiveDay.list[1].weather[0].icon, responseFiveDay.list[1].main.temp.toFixed(2), responseFiveDay.list[1].main.humidity)
+                console.log(responseFiveDay.list[1].main.temp);
+                // tempF.toFixed(2)
+                console.log(responseFiveDay.list[1].main.humidity);
+                console.log(responseFiveDay.list[1].weather[0].icon);
+
+                // for (i = 1; i < 6; i++) {
+                //     var col = $("<div>").attr("class", "col-sm-2");
+                //     $("#five-day").append(col);
+                //     var card = $("<div>").attr("class", "card small card-body").attr("id", "card");
+                //     col.append(card);
+                //     card.append(currentDate);
+                // }
+
+            });
+
+            // }
         })
 
         getCityHistory(city);
 
+        // fiveDayForecast(city);
+
+
     })
-    // }
 
     function getCityHistory(city) {
         var cityHistoryDiv = $("#city-history");
         var cityHistoryBtn = $("<button>").text(city).addClass("city-button");
         cityHistoryDiv.prepend(cityHistoryBtn);
         $("#search-city").val("");
+
     }
 
-    function fiveDayForecast(data) {
-        queryFiveDay = "api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
-        $.ajax({
-            url: queryFiveDay,
-            method: "GET",
-        }).then(function (data) {
-            console.log(data)
-
-            // var fiveCard = <div class="col-sm-2 card text-white bg-primary mb-3" id="card">
-
-            // </div >
-        });
-
-    });
+});

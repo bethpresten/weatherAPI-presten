@@ -20,13 +20,6 @@ button {
   background-color: #1e90ff;
 }
 
-#card {
-  background-color: blue;
-  color: white;
-  margin: 10px;
-  float: left;
-}
-
 input {
   height: 10px;
 }
@@ -45,7 +38,7 @@ input {
 }
 
 .city {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bolder;
   display: inline !important;
 }
@@ -53,4 +46,17 @@ input {
 .current-day {
   display: inline !important;
   margin: 8%;
+}
+
+#five-day {
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+#card {
+  background-color: blue;
+  color: white;
+  margin: 5%;
+  float: left;
+  display: inline-block;
 }
