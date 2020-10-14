@@ -1,5 +1,5 @@
 #main {
-  background-color: whitesmoke;
+  background-color: lightgray;
 }
 
 #header {
@@ -29,10 +29,12 @@ input {
   border-color: black;
 }
 
-.city-button {
+#city-button {
   background-color: lightslategray;
   color: white;
   border-color: dark;
+  border-radius: 30%;
+  padding: 10px;
   display: block;
   margin: 10%;
 }
