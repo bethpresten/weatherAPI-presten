@@ -51,7 +51,7 @@ $(document).ready(function () {
                 method: "GET",
             }).then(function (responseUV) {
                 var UVindex = responseUV.value;
-                // condition.remove();
+                $(".uv-index").empty();
                 var condition = $("<button>");
                 condition.text("UV Index: " + UVindex).attr("class", "btn-warning");
                 $(".uv-index").prepend(condition);
