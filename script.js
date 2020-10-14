@@ -82,6 +82,8 @@ $(document).ready(function () {
                         url: queryFiveDay,
                         method: "GET",
                     }).then(function (responseFiveDay) {
+                        $("#five-day").show();
+                        $(".card").show();
                         console.log(responseFiveDay);
                         var dayOneDate = (moment().add(1, 'days').format("L"));
                         console.log(dayOneDate);

@@ -35,9 +35,9 @@ input {
   color: white;
   border-color: dark;
   border-radius: 10%;
-  padding: 20px;
-  display: inline-block;
-  margin: 10%;
+  padding: 5px 10px;
+  display: block;
+  margin: 3%;
   text-align: center;
 }
 
@@ -55,6 +55,7 @@ input {
 #five-day {
   font-size: 24px;
   font-weight: bolder;
+  display: none;
 }
 
 /* #card {
@@ -67,20 +68,25 @@ input {
 
 #five-day-card1 {
   font-size: 8px;
+  margin: 1%;
 }
 
 #five-day-card2 {
   font-size: 8px;
+  margin: 1%;
 }
 
 #five-day-card3 {
   font-size: 8px;
+  margin: 1%;
 }
 
 #five-day-card4 {
   font-size: 8px;
+  margin: 1%;
 }
 
 #five-day-card5 {
   font-size: 8px;
+  margin: 1%;
 }
