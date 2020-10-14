@@ -87,7 +87,7 @@ $(document).ready(function () {
                         var dayOneDate = (moment().add(1, 'days').format("L"));
                         console.log(dayOneDate);
                         // console.log(responseFiveDay.list[1].main.temp);
-                        var tempFone = ("Temp: " + ((response.list[0].main.temp - 273.15) * 1.8 + 32).toFixed(2)) + " F";
+                        var tempFone = ("Temp: " + ((response.list[0].main.temp - 273.15) * 1.8 + 32).toFixed(0)) + " F";
                         // console.log(tempF);
                         var weatherPicOne = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + responseFiveDay.list[1].weather[0].icon + "@2x.png");
                         // console.log(weatherPic);
@@ -98,25 +98,25 @@ $(document).ready(function () {
                         $("#five-day-card1").text(dayOneDate, weatherPicOne, tempFone, humidCityOne).append(tempFone, weatherPicOne, humidCityOne);
                         // Second card popoulated with weather information
                         var dayTwoDate = (moment().add(2, 'days').format("L"));
-                        var tempFtwo = ("Temp: " + ((response.list[16].main.temp - 273.15) * 1.8 + 32).toFixed(2)) + " F";
+                        var tempFtwo = ("Temp: " + ((response.list[16].main.temp - 273.15) * 1.8 + 32).toFixed(0)) + " F";
                         var weatherPicTwo = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + responseFiveDay.list[16].weather[0].icon + "@2x.png");
                         var humidCityTwo = ("Humidity: " + responseFiveDay.list[16].main.humidity);
                         $("#five-day-card2").text(dayTwoDate, weatherPicTwo, tempFtwo, humidCityTwo).append(tempFtwo, weatherPicTwo, humidCityTwo);
                         // Third card populated with weather information
                         var dayThreeDate = (moment().add(3, 'days').format("L"));
-                        var tempFthree = ("Temp: " + ((response.list[23].main.temp - 273.15) * 1.8 + 32).toFixed(2)) + " F";
+                        var tempFthree = ("Temp: " + ((response.list[23].main.temp - 273.15) * 1.8 + 32).toFixed(0)) + " F";
                         var weatherPicThree = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + responseFiveDay.list[23].weather[0].icon + "@2x.png");
                         var humidCityThree = ("Humidity: " + responseFiveDay.list[23].main.humidity);
                         $("#five-day-card3").text(dayThreeDate, weatherPicThree, tempFthree, humidCityThree).append(tempFthree, weatherPicThree, humidCityThree);
                         // Fourth card populated with weather information
                         var dayFourDate = (moment().add(4, 'days').format("L"));
-                        var tempFfour = ("Temp: " + ((response.list[30].main.temp - 273.15) * 1.8 + 32).toFixed(2)) + " F";
+                        var tempFfour = ("Temp: " + ((response.list[30].main.temp - 273.15) * 1.8 + 32).toFixed(0)) + " F";
                         var weatherPicFour = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + responseFiveDay.list[30].weather[0].icon + "@2x.png");
                         var humidCityFour = ("Humidity: " + responseFiveDay.list[30].main.humidity);
                         $("#five-day-card4").text(dayFourDate, weatherPicFour, tempFfour, humidCityFour).append(tempFfour, weatherPicFour, humidCityFour);
                         // Fifth card populated with weather information
                         var dayFiveDate = (moment().add(5, 'days').format("L"));
-                        var tempFfive = ("Temp: " + ((response.list[38].main.temp - 273.15) * 1.8 + 32).toFixed(2)) + " F";
+                        var tempFfive = ("Temp: " + ((response.list[38].main.temp - 273.15) * 1.8 + 32).toFixed(0)) + " F";
                         var weatherPicFive = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + responseFiveDay.list[38].weather[0].icon + "@2x.png");
                         var humidCityFive = ("Humidity: " + responseFiveDay.list[38].main.humidity);
                         $("#five-day-card5").text(dayFiveDate, weatherPicFive, tempFfive, humidCityFive).append(tempFfive, weatherPicFive, humidCityFive);
@@ -138,22 +138,16 @@ $(document).ready(function () {
             var cityHistoryBtn = $("<button>").text(city).addClass("city-button").attr("id", city);
             cityHistoryDiv.prepend(cityHistoryBtn);
             // console.log("1st click!");
+            // clears out search from the input field
             $("#search-city").val("");
-            localStorage.setItem("id", city);
-        })
-
-        // $(document).on("click", ".city-button", function (e) {
-        //     $(".city-button").click(function (e)
-        //     console.log("city click");
-        //     localStorage.getItem("id", city);
-        //     currentWeather();
-        // })
-        $(document).on("click", ".city-button", function (event) {
-            $(".city-button").click(function (event) {
-                cityHistoryBtn = $(".city-button").attr("id");
-                localStorage.getItem("id", city);
+            localStorage.setItem("cityName" + city, city)
+            cityHistoryBtn.on("click", function () {
+                console.log("clicked history button");
+                cityHistoryBtn = $(".city-button").attr("id", city);
+                localStorage.getItem("cityName" + city, city)
                 currentWeather(city);
             });
-        });
+        })
     }
 });
+
