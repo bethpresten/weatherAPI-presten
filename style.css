@@ -12,12 +12,13 @@
 
 #search-city {
   padding: 10px;
-  margin: 10px;
+  margin-top: 10%;
   display: inline-block;
 }
 
 button {
   background-color: #1e90ff;
+  border-radius: 3%;
 }
 
 input {
@@ -25,18 +26,19 @@ input {
 }
 
 #five-day {
-  margin: 5px;
+  margin-top: 5px;
   border-color: black;
 }
 
-#city-button {
+.city-button {
   background-color: lightslategray;
   color: white;
   border-color: dark;
-  border-radius: 30%;
-  padding: 10px;
-  display: block;
+  border-radius: 10%;
+  padding: 20px;
+  display: inline-block;
   margin: 10%;
+  text-align: center;
 }
 
 .city {
@@ -55,10 +57,30 @@ input {
   font-weight: bolder;
 }
 
-#card {
+/* #card {
   background-color: blue;
   color: white;
   margin: 5%;
   float: left;
   display: inline-block;
+} */
+
+#five-day-card1 {
+  font-size: 8px;
+}
+
+#five-day-card2 {
+  font-size: 8px;
+}
+
+#five-day-card3 {
+  font-size: 8px;
+}
+
+#five-day-card4 {
+  font-size: 8px;
+}
+
+#five-day-card5 {
+  font-size: 8px;
 }
