@@ -25,6 +25,12 @@ $(document).ready(function () {
                 // console.log(response.list[0].wind.speed);
                 // console.log(response.list[12].weather[0].icon)
                 // var icon = response.list[12].weather[0].icon;
+                var cityHistoryDiv = $("#city-history");
+                var cityHistoryBtn = $("<button>").text(city).addClass("city-button").attr("id", city);
+                cityHistoryDiv.prepend(cityHistoryBtn);
+                // clears out search from the input field
+                $("#search-city").val("");
+
                 JSON.stringify(response.city.name);
                 $(".city").attr("style", "<h3>").text(city);
                 $(".current-day").text(moment().format("L"));
@@ -110,24 +116,16 @@ $(document).ready(function () {
                     })
 
                     $(".city-button").click(function (event) {
-                        var cityHistoryDiv = $("#city-history");
-                        var cityHistoryBtn = $("<button>").text(city).addClass("city-button").attr("id", city);
-                        cityHistoryDiv.prepend(cityHistoryBtn);
                         // console.log("1st click!");
-                        // clears out search from the input field
-                        $("#search-city").val("");
                         cityHistoryBtn = $(".cityName" + city).attr("id");
                         localStorage.setItem("cityName" + city, city)
-
-                        cityHistoryBtn.on("click", function () {
-                            // console.log("clicked history button");
-                            cityHistoryBtn = $(".city-button").attr("id", city);
-                            localStorage.getItem("cityName" + city, city)
-                            currentWeather(city);
-                        });
+                        // console.log("clicked history button");
+                        cityHistoryBtn = $(".city-button").attr("id", city);
+                        localStorage.getItem("cityName" + city, city)
+                        currentWeather(city);
                     });
                 };
             });
         });
     };
-})
+});
