@@ -4,21 +4,15 @@ $(document).ready(function () {
     var cityHistoryList = $("#city-history");
     var cityInput = $("#city-search");
     var city = $("#search-city").val();
-    var weatherImg = $("#weather-icon");
     var currentDate = moment().format("HH");
     currentWeather();
+
     function currentWeather() {
         $("#search").on("click", function (event) {
             var city = $("#search-city").val();
             var queryURL = "http://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=e2ce71516635d8291df50c096e9d84fd"
             var apiKey = "e2ce71516635d8291df50c096e9d84fd";
-            // console.log(city);
-            // var cityHistoryDiv = $("#city-history");
-            // var cityHistoryBtn = $("<button>").text(city).attr("id", "city-button");
-            // cityHistoryDiv.prepend(cityHistoryBtn);
-            // console.log("1st click!");
-            // $("#search-city").val("");
-            // localStorage.setItem("cityName" + city, city)
+
             $.ajax({
                 url: queryURL,
                 method: "GET",
@@ -43,7 +37,9 @@ $(document).ready(function () {
                 fiveDayForecast(city);
                 // console.log(response.city.coord.lat, response.city.coord.lon);
                 $(".tempF").text("Temperature (F) " + tempF.toFixed(2) + " F");
+
                 var uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+
                 $.ajax({
                     url: uvIndexURL,
                     method: "GET",
@@ -71,11 +67,10 @@ $(document).ready(function () {
                         method: "GET",
                     }).then(function (responseFiveDay) {
                         $("#five-day").show();
-                        $(".card").show();
-                        console.log(responseFiveDay);
+                        // console.log(responseFiveDay);
                         // First card populated with weather information
                         var dayOneDate = (moment().add(1, 'days').format("L"));
-                        console.log(dayOneDate);
+                        // console.log(dayOneDate);
                         // console.log(responseFiveDay.list[1].main.temp);
                         var tempFone = ("Temp: " + ((response.list[0].main.temp - 273.15) * 1.8 + 32).toFixed(2)) + " F";
                         var humidCityOne = ("Humidity: " + responseFiveDay.list[0].main.humidity);
@@ -115,14 +110,15 @@ $(document).ready(function () {
                     })
 
                     $(".city-button").click(function (event) {
+                        var cityHistoryDiv = $("#city-history");
                         var cityHistoryBtn = $("<button>").text(city).addClass("city-button").attr("id", city);
                         cityHistoryDiv.prepend(cityHistoryBtn);
                         // console.log("1st click!");
                         // clears out search from the input field
                         $("#search-city").val("");
-                        localStorage.setItem("id", city);
-                        cityHistoryBtn = $(".city-button").attr("id");
+                        cityHistoryBtn = $(".cityName" + city).attr("id");
                         localStorage.setItem("cityName" + city, city)
+
                         cityHistoryBtn.on("click", function () {
                             // console.log("clicked history button");
                             cityHistoryBtn = $(".city-button").attr("id", city);
@@ -130,8 +126,8 @@ $(document).ready(function () {
                             currentWeather(city);
                         });
                     });
-                });
+                };
+            });
         });
-
-    });
     };
+})
