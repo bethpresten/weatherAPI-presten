@@ -8,3 +8,5 @@ User can retrieve data for cities. Search parameter is listed dynamically. Curre
 Completed application:
 
 ![WeatherAPI](./assets/weatherapi.png)
+
+Link to deployed site: (https://bethpresten.github.io/weatherAPI-presten/)

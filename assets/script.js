@@ -30,6 +30,7 @@ $(document).ready(function () {
                 cityHistoryDiv.prepend(cityHistoryBtn);
                 // clears out search from the input field
                 $("#search-city").val("");
+                localStorage.setItem("cityName" + city, city)
 
                 JSON.stringify(response.city.name);
                 $(".city").attr("style", "<h3>").text(city);
