@@ -30,6 +30,11 @@ $(document).ready(function () {
                 cityHistoryDiv.prepend(cityHistoryBtn);
                 // clears out search from the input field
                 $("#search-city").val("");
+                $("#five-day-card1").empty();
+                $("#five-day-card2").empty();
+                $("#five-day-card3").empty();
+                $("#five-day-card4").empty();
+                $("#five-day-card5").empty();
                 localStorage.setItem("cityName" + city, city)
 
                 JSON.stringify(response.city.name);
