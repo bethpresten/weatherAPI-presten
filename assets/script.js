@@ -1,10 +1,6 @@
 $(document).ready(function () {
     // global and js variables
     var cityHistory = [];
-    var cityHistoryList = $("#city-history");
-    var cityInput = $("#city-search");
-    var city = $("#search-city").val();
-    var currentDate = moment().format("HH");
     currentWeather();
 
     function currentWeather() {
@@ -35,7 +31,7 @@ $(document).ready(function () {
                 $("#five-day-card3").empty();
                 $("#five-day-card4").empty();
                 $("#five-day-card5").empty();
-                localStorage.setItem("cityName" + city, city)
+                // localStorage.setItem("cityName" + city, city)
 
                 JSON.stringify(response.city.name);
                 $(".city").attr("style", "<h3>").text(city);
@@ -117,14 +113,21 @@ $(document).ready(function () {
 
                     })
 
-                    $(".city-button").click(function (event) {
-                        // console.log("1st click!");
-                        cityHistoryBtn = $(".cityName" + city).attr("id");
-                        localStorage.setItem("cityName" + city, city)
-                        // console.log("clicked history button");
-                        cityHistoryBtn = $(".city-button").attr("id", city);
-                        localStorage.getItem("cityName" + city, city)
+                    function getLastCity(city) {
+                        city = localStorage.getItem("lastCity");
+                        console.log(city);
                         currentWeather(city);
+                    }
+
+                    //Function calls
+                    getLastCity(city);
+
+                    $(".city-button").click(function () {
+                        localStorage.setItem("cityName" + city, city)
+                        cityHistoryBtn = $(".city-button").attr("id", city);
+                        localStorage.getItem("lastCity", city)
+                        currentWeather(city);
+                        console.log(city);
                     });
                 };
             });
